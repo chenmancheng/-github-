@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="soft.mapper.UserMapper">
+
+    <select id="getById" resultType="User">
+        select * from user where tel = #{tel}
+    </select>
+    <select id="login" resultType="User">
+        select * from user where tel = #{tel} and password = #{password}
+    </select>
+    <select id="getList" resultType="User">
+        select * from user
+    </select>
+    <select id="getByName" resultType="User">
+        select * from admin where name = #{name}
+    </select>
+    <insert id="insert">
+           insert into user
+           <trim prefix="(" suffix=")" suffixOverrides=",">
+               <if test="tel != null">
+                   tel,
+               </if>
+               <if test="password != null">
+                   password,
+               </if>
+               <if test="name != null">
+                   name,
+               </if>
+               <if test="gender != null">
+                   gender,
+               </if>
+               <if test="age != null">
+                   age,
+               </if>
+               <if test="signature != null">
+                   signature,
+               </if>
+               <if test="question != null">
+                   question,
+               </if>
+               <if test="answer != null">
+                   answer,
+               </if>
+               <if test="headportrait != null">
+                   headportrait,
+               </if>
+               <if test="  address != null">
+                   address,
+               </if>
+               <if test="permissions != null">
+                   permissions,
+               </if>
+           </trim>
+           values
+           <trim prefix="(" suffix=")" suffixOverrides=",">
+               <if test="tel != null">
+                   #{tel},
+               </if>
+               <if test="password != null">
+                   #{password},
+               </if>
+               <if test="name != null">
+                   #{name},
+               </if>
+               <if test="gender != null">
+                   #{gender},
+               </if>
+               <if test="age != null">
+                   #{age},
+               </if>
+               <if test="signature != null">
+                   #{signature},
+               </if>
+               <if test="question != null">
+                   #{question},
+               </if>
+               <if test="answer != null">
+                   #{answer},
+               </if>
+               <if test="headportrait != null">
+                   #{headportrait},
+               </if>
+               <if test="address != null">
+                   #{address},
+               </if>
+               <if test="permissions != null">
+                   #{permissions},
+               </if>
+           </trim>
+    </insert>
+    <update id="update">
+        update user set
+        <trim  suffixOverrides=",">
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="signature != null">
+                signature = #{signature},
+            </if>
+            <if test="question != null">
+                question = #{question},
+            </if>
+            <if test="answer != null">
+                answer = #{answer},
+            </if>
+            <if test="headportrait != null">
+                headportrait = #{headportrait},
+            </if>
+
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="permissions != null">
+                permissions = #{permissions},
+            </if>
+        </trim>
+        where tel = #{tel}
+    </update>
+
+    <delete id="delete">
+       delete from user where id=#{id}
+    </delete>
+</mapper>

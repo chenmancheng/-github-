@@ -1,0 +1,64 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>SpringMvc</servlet-name>
+    <!--servlet-class中的值是spring-webmvc包提供的类，即前端控制器，用于控制所有请求 -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param> <param-name>contextConfigLocation</param-name>
+      <!---加载配置--> <param-value>classpath:application-context.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <!--3.编写Controller
+    4.在application-context.xml开启扫描-->
+    <servlet-name>SpringMvc</servlet-name>
+    <!--url-pattern（重点）中有3个值，分别为/、 /*、 *.action -->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <!--spring前端控制器注册结束-->
+  <!--配置默认请求的页面，比如http://localhost:8080/ssm01
+  以上请求默认会有一个处理页面，一般默认值index.jsp或index.html
+  如下代码，即默认打开login.jsp。 优先级按代码顺序 -->
+  <!--  <servlet-mapping>-->
+  <!--    <servlet-name>default</servlet-name>-->
+  <!--    <url-pattern>*.css</url-pattern>-->
+  <!--  </servlet-mapping>-->
+  <!--  <servlet-mapping>-->
+  <!--    <servlet-name>default</servlet-name>-->
+  <!--    <url-pattern>*.gif</url-pattern>-->
+  <!--  </servlet-mapping>-->
+  <!--  <servlet-mapping>-->
+  <!--    <servlet-name>default</servlet-name>-->
+  <!--    <url-pattern>*.jpg</url-pattern>-->
+  <!--  </servlet-mapping>-->
+  <!--  <servlet-mapping>-->
+  <!--    <servlet-name>default</servlet-name>-->
+  <!--    <url-pattern>*.png</url-pattern>-->
+  <!--  </servlet-mapping>-->
+  <!--  <servlet-mapping>-->
+  <!--    <servlet-name>default</servlet-name>-->
+  <!--    <url-pattern>*.js</url-pattern>-->
+  <!--  </servlet-mapping>-->
+
+
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+
+  </welcome-file-list>
+</web-app>

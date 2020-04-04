@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+        				   http://www.springframework.org/schema/mvc
+        				   https://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           ">
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+<!--    <mvc:annotation-driven/>-->
+<!--<mvc:resources mapping="/images/**" location="/images/"/>-->
+<!--    <mvc:resources mapping="/images/**" location="resources/images/"/>-->
+    <!--会引起一个严重的后果，controller中的所有url全部是404-->
+<!--        <mvc:view-controller path="/login" view-name=""></mvc:view-controller>-->
+    <!--告诉springmvc，自己映射的请求就自己处理，不能处理的请求就交给tomcat-->
+
+
+
+    <!--将springmvc，功能全开-->
+    <mvc:annotation-driven conversion-service="convertService" />
+    <bean id="convertService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
+    <mvc:default-servlet-handler />
+
+    <mvc:resources location="/" mapping="/*"/>
+    <!--注册登陆拦截器-->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <mvc:exclude-mapping path="/**/*.css"/>-->
+<!--            <mvc:exclude-mapping path="/**/*.js"/>-->
+<!--            <mvc:exclude-mapping path="/**/*.png"/>-->
+<!--            <mvc:exclude-mapping path="/**/*.jpg"/>-->
+<!--            <bean class="soft.interceptor.LoginInterceptor" />-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSizePerFile" value="10240000"/>
+    </bean>
+
+</beans>
